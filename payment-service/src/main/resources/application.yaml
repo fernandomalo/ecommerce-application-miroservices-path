@@ -1,0 +1,28 @@
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#     ip-address: "::1"
+#     hostname: "::1"
+#     instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  artemis:
+    mode: native
+    broker-url: tcp://artemis-service:61616
+    user: admin
+    password: admin
+
+  jms:
+    template:
+      default-destination: demo-queue
+
+user-info-service:
+  url: http://localhost:8004
+
+wompi:
+  base-url: https://sandbox.wompi.co/v1
+  public-key: pub_test_T55RY2SCt0YcANIW36QGL3Mx9NU9PSuv
+  private-key: prv_test_dHl8pC9U2823s93IxGgt1Z4x6d7mlL2X
+  integrity-secret: test_integrity_0452NI3MU4EDMCugHw2dmHyDMV4Yj8H5
+  events-secret: test_events_my7UBtQHP6A8Pm6E3AyEMUzJtCQC5LOR
+  redirect-url: http://localhost:5173/orders

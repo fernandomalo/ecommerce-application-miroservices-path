@@ -1,0 +1,124 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-service-unit
+spec:
+  selector:
+    matchLabels:
+      app: cart-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cart-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: cart-service
+          image: fernando005708/mmv2-ecomod-cart-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/cart_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-unit
+spec:
+  selector:
+    matchLabels:
+      app: order-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: order-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: order-service
+          image: fernando005708/mmv2-ecomod-order-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/order_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service-unit
+spec:
+  selector:
+    matchLabels:
+      app: payment-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: payment-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: payment-service
+          image: fernando005708/mmv2-ecomod-payment-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/payment_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-cart-service
+spec:
+  selector:
+    app: cart-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8006
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-order-service
+spec:
+  selector:
+    app: order-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8007
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-payment-service
+spec:
+  selector:
+    app: payment-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8008
+  type: ClusterIP

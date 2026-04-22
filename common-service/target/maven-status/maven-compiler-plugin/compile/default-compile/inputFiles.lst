@@ -1,0 +1,16 @@
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/CategoryInfo.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductCategoryAddedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductDescriptionUpdatedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductNameUpdatedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductOutOfStock.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductPriceUpdatedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductPublishedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductSendCompanyInfoEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/ProductStockChanged.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/CreateOrderEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/CreatePaymentEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/Item.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/OrderConfirmedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/OrderNotCreatedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/PaymentFailedEvent.java
+/home/fernando/Documents/spring_applications/microservices/Ecomod_project_backend_microservices/common-service/src/main/java/com/fernando/microservices/common_service/events/order_events/PaymentSuccessfulEvent.java

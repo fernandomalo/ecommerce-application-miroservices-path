@@ -1,0 +1,360 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-unit
+spec:
+  selector:
+    matchLabels:
+      app: auth-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: auth-service
+          image: fernando005708/ecomod-auth-service:1.0.0-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/auth_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-unit
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+        version: v1.0.0
+    spec:
+      containers:
+        - name: api-gateway
+          image: fernando005708/mmv2-ecomod-api-gateway:0.0.2-SNAPSHOT
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-command-unit
+spec:
+  selector:
+    matchLabels:
+      app: catalog-command-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: catalog-command-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: catalog-command-service
+          image: fernando005708/mmv2-ecomod-catalog-command-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/catalog_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecomod-frontend-unit
+spec:
+  selector:
+    matchLabels:
+      app: ecomod-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ecomod-frontend
+        version: v1.0.0
+    spec:
+      containers:
+        - name: ecomod-frontend
+          image: fernando005708/ecomod-frontend:1.0.1-RELEASE
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-service-unit
+spec:
+  selector:
+    matchLabels:
+      app: inventory-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: inventory-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: inventory-service
+          image: fernando005708/mmv2-inventory-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/inventory_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service-unit
+spec:
+  selector:
+    matchLabels:
+      app: product-materialized-view-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: product-materialized-view-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: product-materialized-view-service
+          image: fernando005708/mmv2-ecomod-product-matirialized-view-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/product_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-rules-unit
+spec:
+  selector:
+    matchLabels:
+      app: shipping-rules-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shipping-rules-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: shipping-rules-service
+          image: fernando005708/mmv2-ecomod-shipping-rules-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/shipping_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-info-unit
+spec:
+  selector:
+    matchLabels:
+      app: user-info-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-info-service
+        version: v1.0.0
+    spec:
+      containers:
+        - name: user-info-service
+          image: fernando005708/mmv2-ecomod-user-info-service:0.0.1-SNAPSHOT
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/user_info_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: MiClaveSegura123!
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-auth-service
+spec:
+  selector:
+    app: auth-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8003
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      port: 8080
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-catalog-command-service
+spec:
+  selector:
+    app: catalog-command-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8000
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-frontend-service
+spec:
+  selector:
+    app: ecomod-frontend
+  ports:
+    - name: http
+      port: 80
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-inventory-service
+spec:
+  selector:
+    app: inventory-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8001
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-product-materialized-view-service
+spec:
+  selector:
+    app: product-materialized-view-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8002
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-shipping-rules-service
+spec:
+  selector:
+    app: shipping-rules-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8005
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecomod-user-info-service
+spec:
+  selector:
+    app: user-info-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8004
+  type: ClusterIP
+
+---
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: ecomod-ingressgateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "ecomod-colombia.shop"
+
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: ecomod-virtualservice
+spec:
+  hosts:
+    - "ecomod-colombia.shop"
+  gateways:
+    - ecomod-ingressgateway
+  http:
+    - match:
+        - uri:
+            prefix: /api
+        - uri:
+            prefix: /auth
+      route:
+        - destination:
+            host: ecomod-api-gateway.default.svc.cluster.local
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: ecomod-frontend-service.default.svc.cluster.local

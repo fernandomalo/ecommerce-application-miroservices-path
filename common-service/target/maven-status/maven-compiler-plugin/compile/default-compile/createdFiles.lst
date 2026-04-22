@@ -1,0 +1,16 @@
+com/fernando/microservices/common_service/events/ProductSendCompanyInfoEvent.class
+com/fernando/microservices/common_service/events/ProductPriceUpdatedEvent.class
+com/fernando/microservices/common_service/events/CategoryInfo.class
+com/fernando/microservices/common_service/events/order_events/OrderNotCreatedEvent.class
+com/fernando/microservices/common_service/events/ProductNameUpdatedEvent.class
+com/fernando/microservices/common_service/events/ProductOutOfStock.class
+com/fernando/microservices/common_service/events/ProductStockChanged.class
+com/fernando/microservices/common_service/events/order_events/CreatePaymentEvent.class
+com/fernando/microservices/common_service/events/order_events/CreateOrderEvent.class
+com/fernando/microservices/common_service/events/order_events/Item.class
+com/fernando/microservices/common_service/events/order_events/PaymentFailedEvent.class
+com/fernando/microservices/common_service/events/order_events/OrderConfirmedEvent.class
+com/fernando/microservices/common_service/events/order_events/PaymentSuccessfulEvent.class
+com/fernando/microservices/common_service/events/ProductCategoryAddedEvent.class
+com/fernando/microservices/common_service/events/ProductDescriptionUpdatedEvent.class
+com/fernando/microservices/common_service/events/ProductPublishedEvent.class

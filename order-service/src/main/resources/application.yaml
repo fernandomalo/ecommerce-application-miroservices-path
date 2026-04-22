@@ -1,0 +1,17 @@
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#     ip-address: "::1"
+#     hostname: "::1"
+#     instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  artemis:
+    mode: native
+    broker-url: tcp://artemis-service:61616
+    user: admin
+    password: admin
+
+  jms:
+    template:
+      default-destination: demo-queue

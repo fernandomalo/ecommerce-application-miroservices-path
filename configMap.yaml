@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: istio-system
+data:
+  config.yaml: |
+    tunnel: istio-tunnel
+    credentials-file: /etc/cloudflared/credentials/credentials.json
+
+    ingress:
+      - hostname: ecomod-colombia.shop
+        service: http://istio-ingressgateway.istio-system.svc.cluster.local:80
+      - hostname: www.ecomod-colombia.shop
+        service: http://istio-ingressgateway.istio-system.svc.cluster.local:80
+      - service: http_status:404
